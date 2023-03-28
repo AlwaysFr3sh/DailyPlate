@@ -15,7 +15,7 @@ Num_meals: int - the number of meals to return \n
 ### construct prompt
 
 ```python
-construct_prompt(template_path: int, liked_meals: list 
+construct_prompt(template_path: int, liked_meals: list) -> str:
 ```
 
 template_paths: str - the path to the text file containg a template prompt to sent to chatgpt \n
