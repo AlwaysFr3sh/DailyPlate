@@ -35,5 +35,5 @@ items - list of ingredients to fetch nutritional information on (prolly just jou
 def calculate_BMI(height: float, weight: float) -> float: # frick the imperial system (we use kg and cms)
 ```
 
-
+### calculate_ingredient_proportions(bmi: float, ingredients: list) ### UNFINISHED
 
