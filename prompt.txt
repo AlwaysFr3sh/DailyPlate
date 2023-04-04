@@ -1,0 +1,6 @@
+Create <num_meals> meals for me to cook this week and give your response as a single json object, the json object should be formatted like this... {"title": {"ingredient" : {"proportion" : "unit of measurement"}}} where "title" is the title of the meal, "ingredient" is the name of the ingredient, "proportion" is a value denoting how much of the ingredient to use and "unit of measurement" is the corresponding unit of measurement for "proportion" Do not include recipe instructions. 
+
+
+Create 2 meals for me to cook this week and give your response as a single json object, the json object should be formatted like this...
+{"title" : {"ingredients" {"ingredient" {"proportion" : "unit of measurement"}}, "recipe" : ["step1"]}}
+where "title" is the title of the meal, "ingredients" denotes that its value containts the meals ingredients, "proportion" is a value denoting how much of the ingredient to use, "unit of measurement" is the corresponding unit of measurement for "proportion", "recipe" denotes that its value contains a list of recipe steps and ["step1"] is a list of recipe steps where "step1" should be a string instruction.
