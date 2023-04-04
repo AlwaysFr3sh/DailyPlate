@@ -7,7 +7,7 @@ class TestUtilitiyFunctions(unittest.TestCase):
     self.assertEqual(calculate_bmi(1.65, 68), 24.98)
 
   def test_construct_prompt_returns_string(self):
-    result = construct_prompt("GOOD_PROMPT_FOR_SINGLE_RECIPE.txt", [])
+    result = construct_prompt("prompts/GOOD_PROMPT_FOR_SINGLE_RECIPE.txt", [])
     self.assertIsInstance(result, str)
 
 if __name__ == "__main__":
