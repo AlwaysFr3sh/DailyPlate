@@ -6,6 +6,10 @@
   <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
 </head>
 <body>
+  {# Navbar, will need to add more pages here as we build them #}
+  <div>
+    <li><a href="{% url 'home' %}">Home</a></li>
+  </div>
   <main>
     {% block content %}
     {% endblock %}
