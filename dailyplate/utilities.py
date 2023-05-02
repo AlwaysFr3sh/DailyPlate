@@ -19,3 +19,7 @@ def construct_prompt(prompt_template_path:str, liked_meals:list, num_meals=7) ->
 
   return prompt
 
+
+def read_file(path):
+  with open(path) as f: text = f.readlines()
+  return "".join(text).replace("\n", "") 
