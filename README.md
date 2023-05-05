@@ -1,7 +1,29 @@
 # DailyPlate
 Meal plan generator with nutritional and budgeting information
 
+# SET UP ADMIN
+
+Run the following commands 
+```
+./manage.py makemigrations
+```
+
+```
+./manage.py migrate
+```
+
+follow the steps for this command
+```
+./manage.py createsuperuser
+```
+
+```
+./manage.py seed
+```
+
 # API Functions
+
+these are outdated
 
 ### generate meal plan
 ```python

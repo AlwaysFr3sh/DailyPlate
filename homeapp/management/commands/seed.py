@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from homeapp.models import *
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        User.objects.get(username="test1").delete()
+        User.objects.filter(username="test1").delete()
         U1 = User(email="test1@example.com", username="test1")
         U1.set_password('test1')
         U1.save()
