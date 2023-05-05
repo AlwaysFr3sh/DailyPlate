@@ -1,0 +1,13 @@
+{
+  "title" : "<recipe title>",
+  "ingredients" : {
+    "<ingredient 1 name>" : {
+      "amount" : "<amount>",
+      "unit" : "<unit of measurement>",
+      "price" : "<price>"}
+    },
+  "instructions" : [
+    "<step 1>",
+    "<step n>"
+  ]
+}
