@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="recipe_div">
+  <h2>{{ context.title }}</h2>
+  <div class="recipe_ingredients">
+    <h3>Ingredients</h3>
+    <ul>
+    {% for ingredient, ingredient_data in ingredients.items %}
+      <li> {{ ingredient_data.amount }} {{ ingredient }}</li>
+    {% endfor %}
+    </ul>
+  </div>
+  <div>
+    <h3>Instructions</h3>
+    <ul>
+      {% for instruction  in instructions %}
+        <li> {{ instruction }} </li> 
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endblock %}
