@@ -12,7 +12,7 @@ def get_user_recipes(username: str) -> list[Recipe]:
   for recipe_json, recipe in zip(recipes_json, recipes):
     recipe_json["id"] = recipe.id
   return  {"recipes" : recipes_json }
-
+  
 # Create your views here.
 def home(request):
   recipes = get_user_recipes(request.user.username)
