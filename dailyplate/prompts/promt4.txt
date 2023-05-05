@@ -1,0 +1,15 @@
+Give a recipe in the following json format.
+{
+  "title" : "<recipe title>",
+  "ingredients" : {
+    "<ingredient 1 name>" : {
+      "amount" : "<amount>",
+      "unit" : "<unit of measurement>",
+      "price" : "<price>"}
+    },
+  "instructions" : [
+    "<step 1>",
+    "<step n>"
+  ]
+}
+Price should be a float and should be measured in GBP. Amount should be a float. Unit of measurement should either be grams, millilitres,  quantity, teaspoon, or pinch.
