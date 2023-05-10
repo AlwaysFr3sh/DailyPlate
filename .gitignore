@@ -1,3 +1,5 @@
+homeapp/migrations/*
+
 *.DS_Store
 
 openaikey
