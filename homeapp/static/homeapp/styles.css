@@ -66,3 +66,38 @@
   font-weight: normal;
 }
 /*----------------------------------------*/
+/*------------ Login styling -------------*/
+#login {
+  margin-top:30%;
+  display: flex;
+  justify-content: space-around;
+  font-family: "Tahoma";
+}
+#login form h2 {
+  font-weight: normal;
+}
+
+#login form input[type=text] {
+  padding: 5px 5px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+#login form input[type=password] {
+  padding: 5px 5px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+#login form button {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  background-color: #FF9B6B; 
+  color: #000;
+  border-radius: 4px;
+}
+
+#login form button:hover {
+  background-color: grey;
+}
+/*----------------------------------------*/
