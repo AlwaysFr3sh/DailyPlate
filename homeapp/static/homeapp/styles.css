@@ -18,7 +18,7 @@
   text-decoration: none;
   padding: 8px;
   color: black;
-  font-family: 'Tahoma'
+  font-family: "Tahoma"
 }
 
 #navbar li a:hover {
@@ -28,6 +28,28 @@
 #logout {
   float: right;
 }
+/*----------------------------------------*/
+/*------------- Home styling -------------*/
+
+#recipe_container {
+  padding: 0% 1% 0% 1%;
+  font-family: "Tahoma";
+}
+#recipe_container h2 {
+  font-weight: normal;
+}
+
+.recipe_preview {
+  padding: 2%;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1); 
+}
+.recipe_preview a {
+  text-decoration: none;
+  color: #000000;
+}
+
 /*----------------------------------------*/
 /*------------ Recipe styling ------------*/
 .recipe {

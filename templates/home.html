@@ -5,14 +5,16 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  {% for recipe in recipes %} 
-  <a href="{% url 'recipe' id=recipe.id %}">
-    <div>
-      <p>{{ recipe.title }}</p>
-    </div>
-  </a>
-  {% endfor %}
+  {# Hi {{ user.username }}! #}
+  <div id="recipe_container">
+    <h2>Your Meals</h2>
+    {% for recipe in recipes %} 
+      <div class="recipe_preview">
+        <a href="{% url 'recipe' id=recipe.id %}">{{ recipe.title }}</a>
+      </div>
+    {% endfor %}
+  </div>
+  
 {% else %}
   <p>You are not logged in</p>
   <a href="{% url 'login' %}">Log In</a>
