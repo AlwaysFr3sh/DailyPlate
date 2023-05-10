@@ -4,13 +4,15 @@
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'homeapp/styles.css' %}">
 </head>
 <body>
   {# Navbar, will need to add more pages here as we build them #}
-  <div>
+  <ul id="navbar">
     <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'logout' %}">Log Out</a></li>
-  </div>
+    <li style="float: right"><a href="{% url 'logout' %}">Log Out</a></li>
+  </ul>
   <main>
     {% block content %}
     {% endblock %}

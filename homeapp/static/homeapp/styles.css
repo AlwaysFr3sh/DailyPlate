@@ -1,0 +1,31 @@
+/*------------ Navbar styling ------------*/
+#navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #FFFFFF;
+}
+
+#navbar li {
+  float: left;
+}
+
+#navbar li a {
+  display: block;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  padding: 8px;
+  color: black;
+  font-family: 'Tahoma'
+}
+
+#navbar li a:hover {
+  color: #FF9B6B;
+}
+
+#logout {
+  float: right;
+}
+/*----------------------------------------*/
