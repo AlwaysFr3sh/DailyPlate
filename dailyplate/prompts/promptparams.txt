@@ -1,0 +1,5 @@
+some ideas for parameters to incorporate into prompt:
+ - serving size
+ - bmi
+ - enjoyed meals
+ - blacklisted meals (to avoid repeats)

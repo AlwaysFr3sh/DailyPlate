@@ -5,10 +5,23 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+<!--
+Something wrong here, dtl still tries to load recipies when user is not authenticated
+-->
   {# Hi {{ user.username }}! #}
   <div id="recipe_container">
     <h2>Your Meals</h2>
     {% for recipe in recipes %} 
+      <div class="recipe_preview">
+        <a href="{% url 'recipe' id=recipe.id %}">{{ recipe.title }}</a>
+      </div>
+    {% endfor %}
+  </div>
+
+
+  <div id="recipe_container">
+    <h2>Global meals</h2>
+    {% for recipe in sharedRecipes %} 
       <div class="recipe_preview">
         <a href="{% url 'recipe' id=recipe.id %}">{{ recipe.title }}</a>
       </div>
