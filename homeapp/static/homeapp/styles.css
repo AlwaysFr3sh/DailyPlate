@@ -1,0 +1,103 @@
+/*------------ Navbar styling ------------*/
+#navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #FFFFFF;
+}
+
+#navbar li {
+  float: left;
+}
+
+#navbar li a {
+  display: block;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  padding: 8px;
+  color: black;
+  font-family: "Tahoma"
+}
+
+#navbar li a:hover {
+  color: #FF9B6B;
+}
+
+#logout {
+  float: right;
+}
+/*----------------------------------------*/
+/*------------- Home styling -------------*/
+
+#recipe_container {
+  padding: 0% 1% 0% 1%;
+  font-family: "Tahoma";
+}
+#recipe_container h2 {
+  font-weight: normal;
+}
+
+.recipe_preview {
+  padding: 2%;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1); 
+}
+.recipe_preview a {
+  text-decoration: none;
+  color: #000000;
+}
+
+/*----------------------------------------*/
+/*------------ Recipe styling ------------*/
+.recipe {
+  margin: 2.5% 5% 2.5% 5%;
+  padding: 5%;
+  border-radius: 0.5%;
+  font-family: "Tahoma";
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1); 
+}
+.recipe h2 {
+  font-weight: normal;
+}
+.recipe h3 {
+  font-weight: normal;
+}
+/*----------------------------------------*/
+/*------------ Login styling -------------*/
+#login {
+  margin-top:30%;
+  display: flex;
+  justify-content: space-around;
+  font-family: "Tahoma";
+}
+#login form h2 {
+  font-weight: normal;
+}
+
+#login form input[type=text] {
+  padding: 5px 5px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+#login form input[type=password] {
+  padding: 5px 5px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+#login form button {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  background-color: #FF9B6B; 
+  color: #000;
+  border-radius: 4px;
+}
+
+#login form button:hover {
+  background-color: grey;
+}
+/*----------------------------------------*/
