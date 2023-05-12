@@ -4,16 +4,16 @@
 
 {% block content %}
 <div class="recipe">
-  <h2>{{ title }}</h2>
+  <h2>{{ title }}, by {{ username }}</h2>
   <div class="ingredients">
     <h3>Ingredients</h3>
     <ul>
     {% for ingredient, ingredient_data in ingredients.items %}
-      <li> {{ ingredient_data.amount }} {{ ingredient }}</li>
+      <li> {{ ingredient_data.amount }} {{ ingredient_data.unit }} {{ ingredient }}</li>
     {% endfor %}
     </ul>
   </div>
-  <div>
+  <div class="instructions">
     <h3>Instructions</h3>
     <ul>
       {% for instruction  in instructions %}
@@ -21,6 +21,55 @@
       {% endfor %}
     </ul>
   </div>
+  
+  <!--
+    Check whether or not this recipe is global.
+    Determins whether to allow user to add rating, or to instead 'upload' with initial rating
+
+    UNFINISHED
+    needs more consideration. a better way to check if recipe is global is needed.
+    e.g.
+    if private recipe is already uploaded, shouldnt be able to upload twice
+
+    potentially split homepage into 3 sections, private, personally uploaded and global?
+  -->
+
+
+  <script>
+    function rateRecipe() {
+      var userInput = prompt("Enter an rating from 0 to 10:");
+      //if user presses cancel
+      if (userInput === null) {
+          return; //break out of the function early
+      }
+      var number = parseInt(userInput);
+      if (!isNaN(number) && number >= 0 && number <= 10) {
+        location.href = ''
+        alert("Success!")
+      } else {
+        alert("Invalid input. Please enter an integer from 0 to 10.");
+        rateRecipe();
+      }
+    }
+  </script>
+
+
+  
+  {% if "private" in request.path %}
+  <div class="rating">
+    <button onclick="getInput()">Open Pop-up Box</button>
+    <p id="result"></p>
+  </div>
+
+
+  {% elif "public" in request.path %}
+  <div class="rating">
+    <h3>Give this recipe a rating!</h4>
+    <p id="currentRating">Current rating: {{ currentRating }}</p>
+    <button onclick="rateRecipe()">Give rating</button>
+    </div>
+  {% endif %}
+
 </div>
 
 {% endblock %}
