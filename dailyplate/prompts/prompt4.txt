@@ -1,4 +1,4 @@
-Give a recipe in the following json format.
+Give a meal recipe in the following json format.
 {
   "title" : "<recipe title>",
   "ingredients" : {

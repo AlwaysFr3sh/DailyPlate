@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', include("homeapp.urls")),
     ###sends to custom signup view
-    path('signup/', views.signup),
+    path('', views.signup),
     ###sends to default login/logout views
     path('', include("django.contrib.auth.urls")),
 ]

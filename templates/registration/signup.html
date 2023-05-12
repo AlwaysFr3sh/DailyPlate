@@ -1,6 +1,19 @@
-<h2>Sign up</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-</form>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'homeapp/styles.css' %}">
+</head>
+
+<body>
+    <div id="login">
+      <form method="post">
+        <h2>Sign up</h2>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create account</button>
+        <button onclick="location.href='/login/'">Log into existing account</button>
+      </form>
+    </div>
+</body>
+  

@@ -28,10 +28,10 @@ class sharedRecipe(models.Model):
     currentRating = models.FloatField(default=0)
     #to calculate rolling average
     numRatings = models.IntegerField(default=0)
-    def updateRating(newRating):
+    def updateRating(newRating, self):
         ratingSum = self.currentRating * self.numRatings + newRating
         self.numRatings += 1
-        self.currentRating = ratingSum / numRatings
-        return currentRating
+        self.currentRating = ratingSum / self.numRatings
+        return self.currentRating
     def __str__(self):
-        return str(self.recipe) + ", Rating:" + self.currentRating
+        return self.recipe.__str__() + ", Rating:" + str(self.currentRating)
