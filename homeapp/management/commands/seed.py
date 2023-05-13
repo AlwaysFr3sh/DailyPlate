@@ -2,13 +2,20 @@ from django.core.management.base import BaseCommand
 from homeapp.models import *
 class Command(BaseCommand):
     def handle(self, *args, **options):
+        #test users
         User.objects.filter(username="test1").delete()
         U1 = User(email="test1@example.com", username="test1")
         U1.set_password('test1')
         U1.save()
+        User.objects.filter(username="test2").delete()
+        U2 = User(email="test2@example.com", username="test2")
+        U2.set_password('test2')
+        U2.save()
 
-
-        Recipe.objects.filter(formattedJSON__exact={'title':'Spaghetti with Meatballs'}).delete()
+        #R1 is a global recipe
+        SD1=sharedDetails(numRatings=2, currentRating=4)
+        SD1.save()
+        recipe.objects.filter(recipeJSON__exact={'title':'Spaghetti with Meatballs'}).delete()
         JSON1 = {        
             "title": "Spaghetti with Meatballs",
             "ingredients": {
@@ -72,11 +79,11 @@ class Command(BaseCommand):
                 "Serve meatballs on top of cooked spaghetti."
             ]
         }
-        R1=Recipe(user=U1, formattedJSON=JSON1)
+        R1=recipe(user=U1, recipeJSON=JSON1, sharedDetails=SD1)
         R1.save()
 
 
-        Recipe.objects.filter(formattedJSON__exact={'title':'Chocolate Chip Cookies'}).delete()
+        recipe.objects.filter(recipeJSON__exact={'title':'Chocolate Chip Cookies'}).delete()
         JSON2 = {
             "title" : "Chocolate Chip Cookies",
             "ingredients" : {
@@ -133,18 +140,17 @@ class Command(BaseCommand):
                 "Allow the cookies to cool on the baking sheet for a few minutes, then transfer to a wire rack to cool completely."
             ]
         }
-        R2=Recipe(user=U1, formattedJSON=JSON2)
+        R2=recipe(user=U1, recipeJSON=JSON2)
         R2.save()
 
 
 
-        User.objects.filter(username="test2").delete()
-        U2 = User(email="test2@example.com", username="test2")
-        U2.set_password('test2')
-        U2.save()
 
 
-        Recipe.objects.filter(formattedJSON__exact={'title':'Spaghetti Bolognese'}).delete()
+        #R3 is global recipe
+        SD3=sharedDetails(numRatings=1, currentRating=7)
+        SD3.save()
+        recipe.objects.filter(recipeJSON__exact={'title':'Spaghetti Bolognese'}).delete()
         JSON3 = {
             "title": "Spaghetti Bolognese",
             "ingredients": {
@@ -216,12 +222,13 @@ class Command(BaseCommand):
                 "Garnish with grated Parmesan cheese, if desired."
             ]
         }
-        R3=Recipe(user=U2, formattedJSON=JSON3)
+        R3=recipe(user=U2, recipeJSON=JSON3, sharedDetails=SD3)
         R3.save()
+        
 
 
 
-        Recipe.objects.filter(formattedJSON__exact={'title':'Spaghetti Bolognese'}).delete()
+        recipe.objects.filter(recipeJSON__exact={'title':'Spaghetti Bolognese'}).delete()
         JSON4 = {
             "title": "Mushroom Risotto",
             "ingredients": {
@@ -299,16 +306,16 @@ class Command(BaseCommand):
                 "Serve the mushroom risotto garnished with fresh parsley."
             ]
         }
-        R4=Recipe(user=U2, formattedJSON=JSON4)
+        R4=recipe(user=U2, recipeJSON=JSON4)
         R4.save()
 
-
-        SR1=sharedRecipe(recipe=R1, currentRating=4, numRatings=1)
-        SR1.save()
-
-
-        SR2=sharedRecipe(recipe=R3, currentRating=3, numRatings=1)
-        SR2.save()
+        #saving some rating history records
+        H1=ratingHistory(ratingGiven=7, user=U2, sharedRecipe=SD3)
+        H1.save()
+        H2=ratingHistory(ratingGiven=3, user=U1, sharedRecipe=SD1)
+        H2.save()
+        H3=ratingHistory(ratingGiven=5, user=U2, sharedRecipe=SD1)
+        H3.save()
 
         self.stdout.write('done.') 
 
