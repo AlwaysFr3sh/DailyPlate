@@ -1,9 +1,14 @@
 # DailyPlate
 Meal plan generator with nutritional and budgeting information
 
-# SET UP ADMIN
 
-Run the following commands 
+
+# SEED DATABASE
+Model architecture has changed. If already seeded before may 13, flush and migrate before re-seeding:
+```
+./manage.py flush
+```
+
 ```
 ./manage.py makemigrations
 ```
@@ -12,7 +17,11 @@ Run the following commands
 ./manage.py migrate
 ```
 
-follow the steps for this command
+```
+./manage.py seed
+```
+
+# SET UP ADMIN
 ```
 ./manage.py createsuperuser
 ```
