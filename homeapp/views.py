@@ -3,6 +3,9 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+
+
+"""
 #TODO: move this to different file idk which file tho
 def get_user_recipes(username: str) -> list[Recipe]:
   user = User.objects.get(username=username)
@@ -16,32 +19,48 @@ def get_user_recipes(username: str) -> list[Recipe]:
 
 
 # Could be optimised to only return recipe objects in query
-def get_global_recipes() -> list[Recipe]:
+def get_global_recipes() -> list[sharedRecipe]:
   sRecipes = sharedRecipe.objects.filter()
-  [print(sRecipe.recipe.id) for sRecipe in sRecipes]
-  recipes_json = [sRecipe.recipe.formattedJSON for sRecipe in sRecipes]
+  [print(sRecipe.id) for sRecipe in sRecipes]
+  sRecipes_json = [sRecipe.formattedJSON() for sRecipe in sRecipes]
   # incredibly scuffed
-  for recipe_json, sRecipe in zip(recipes_json, sRecipes):
-    recipe_json["id"] = sRecipe.recipe.id
-  return  {"sharedRecipes" : recipes_json }
+  for sRecipes_json, sRecipe in zip(sRecipes_json, sRecipes):
+    sRecipes_json["id"] = sRecipe.id
+  return  { "sharedRecipes" : sRecipes_json }
+"""
+#!!!rewritten code above for new model architecture!!!
+
 
   
+
 # Display private and shared recipes
+@login_required
 def home(request):
-  recipes = get_user_recipes(request.user.username)
-  sharedRecipies = get_global_recipes()
-  #simple display of global recipes
-  #requires implimentation of rating display and submission
-  context=recipes
-  context.update(sharedRecipies)
+  personalRecipes = recipe.objects.filter(user=request.user)
+  globalRecipes = [r for r in recipe.objects.filter() if r.shared()]
+  context = {
+    "personalRecipes" : personalRecipes,
+    "globalRecipes" : globalRecipes,
+  }
   return render(request, "home.html", context=context)
   
 
-# Display single recipe. Requires user to be logged in
+# Display single recipe. Requires user to be logged in.
 @login_required
-def recipe(request, id):
-  context = Recipe.objects.get(id=id).formattedJSON 
+def renderRecipe(request, recipeID):
+  selectedRecipe=recipe.objects.get(pk=recipeID)
+  ratedByUser=selectedRecipe.ratedByUser(checkUser=request.user)
+  #ratedByUser bool must be parsed here as method cannot be called in DTL as it requires parameters
+  context = {
+    'recipe':selectedRecipe,
+    'ratedByUser':ratedByUser
+  }
   return render(request, "recipe.html", context)
+
+
+
+
+
 
 def test_recipe_view(request):
   context = {
@@ -57,6 +76,5 @@ def test_recipe_view(request):
       "<step n>"
     ]
   }
-
   return render(request, "recipe.html", context)
 

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
 
-admin.site.register(Recipe)
-admin.site.register(sharedRecipe)
+admin.site.register(recipe)
+admin.site.register(sharedDetails)
+admin.site.register(ratingHistory)

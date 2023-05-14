@@ -1,26 +1,76 @@
 {% extends 'base.html' %}
-
 {% block title %}Home{% endblock %}
-
 {% block content %}
+
+
 <div class="recipe">
-  <h2>{{ title }}</h2>
+  <h2>{{ recipe.getTitle }}, by {{ user.username }} ({% if ratedByUser %}Public{% else %}Private{% endif %})</h2>
   <div class="ingredients">
     <h3>Ingredients</h3>
+
     <ul>
-    {% for ingredient, ingredient_data in ingredients.items %}
-      <li> {{ ingredient_data.amount }} {{ ingredient }}</li>
+    {% for ingredient, ingredient_data in recipe.recipeJSON.ingredients.items %}
+      <li> {{ ingredient_data.amount }} {{ ingredient_data.unit }} {{ ingredient }}</li>
     {% endfor %}
     </ul>
+
   </div>
-  <div>
+  <div class="instructions">
     <h3>Instructions</h3>
+
     <ul>
-      {% for instruction  in instructions %}
+      {% for instruction  in recipe.recipeJSON.instructions %}
         <li> {{ instruction }} </li> 
       {% endfor %}
     </ul>
+
   </div>
+  
+
+  <script>
+    function rateRecipe() {
+      var userInput = prompt("Enter an rating from 0 to 10:");
+      //if user presses cancel
+      if (userInput === null) {
+          return; //break out of the function early
+      }
+      var number = parseInt(userInput);
+      if (!isNaN(number) && number >= 0 && number <= 10) {
+        location.href = ''
+        alert("Success!")
+        //!!!THESE TWO LINES ARE BROKEN, PAGE RESETS AFTER FUNCTION CALL?!!!
+        document.getElementById("rate_message").innerHTML = "Thanks for your feedback!"
+        document.getElementById("rate_button").disable
+        //TODO implement backend
+      } else {
+        alert("Invalid input. Please enter an integer from 0 to 10.");
+        rateRecipe();
+      }
+    }
+    function shareRecipe() {
+    ///TODO
+    }
+  </script>
+
+
+  
+  {% if recipe.shared %}
+    <p id="currentRating">This recipe is rated at {{ recipe.sharedDetails.currentRating }}, with feedback from {{ recipe.sharedDetails.numRatings }} user(s).</p>
+    {% if ratedByUser %}
+      You have already rated this meal!
+    {% else %}
+      <div class="rating">
+        <h3 id="rate_message">Give this recipe a rating!</h4>
+        <button id="rate_button" onclick="rateRecipe()">Rate now</button>
+      </div>
+      {% endif %}
+  {% else %}
+  <div class="upload">
+    <button onclick="shareRecipe()">Share this meal!</button>
+    <p id="result"></p>
+  </div>
+  {% endif %}
 </div>
+
 
 {% endblock %}

@@ -1,19 +1,16 @@
-
 {% extends 'base.html' %}
-
 {% block title %}Home{% endblock %}
-
 {% block content %}
 {% if user.is_authenticated %}
 <!--
 Something wrong here, dtl still tries to load recipies when user is not authenticated
 -->
-  {# Hi {{ user.username }}! #}
+  <p>Hi {{ user.username }}!</p>
   <div id="recipe_container">
     <h2>Your Meals</h2>
-    {% for recipe in recipes %} 
+    {% for personalRecipe in personalRecipes %} 
       <div class="recipe_preview">
-        <a href="{% url 'recipe' id=recipe.id %}">{{ recipe.title }}</a>
+        <a href="{% url 'render_recipe' recipeID=personalRecipe.pk %}">{{ personalRecipe.getTitle }}</a>
       </div>
     {% endfor %}
   </div>
@@ -21,9 +18,10 @@ Something wrong here, dtl still tries to load recipies when user is not authenti
 
   <div id="recipe_container">
     <h2>Global meals</h2>
-    {% for recipe in sharedRecipes %} 
+    {% for globalRecipe in globalRecipes %} 
       <div class="recipe_preview">
-        <a href="{% url 'recipe' id=recipe.id %}">{{ recipe.title }}</a>
+        <a href="{% url 'render_recipe' recipeID=globalRecipe.pk %}">{{ globalRecipe.getTitle }}</a>
+        <p>Rating: {{ globalRecipe.sharedDetails.currentRating }}</p>
       </div>
     {% endfor %}
   </div>
