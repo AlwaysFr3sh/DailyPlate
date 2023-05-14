@@ -12,10 +12,15 @@ class Command(BaseCommand):
         U2.set_password('test2')
         U2.save()
 
+        #clear tables
+        recipe.objects.all().delete()
+        sharedDetails.objects.all().delete()
+        ratingHistory.objects.all().delete()
+
+
         #R1 is a global recipe
         SD1=sharedDetails(numRatings=2, currentRating=4)
         SD1.save()
-        recipe.objects.filter(recipeJSON__exact={'title':'Spaghetti with Meatballs'}).delete()
         JSON1 = {        
             "title": "Spaghetti with Meatballs",
             "ingredients": {
@@ -83,7 +88,6 @@ class Command(BaseCommand):
         R1.save()
 
 
-        recipe.objects.filter(recipeJSON__exact={'title':'Chocolate Chip Cookies'}).delete()
         JSON2 = {
             "title" : "Chocolate Chip Cookies",
             "ingredients" : {
@@ -150,7 +154,6 @@ class Command(BaseCommand):
         #R3 is global recipe
         SD3=sharedDetails(numRatings=1, currentRating=7)
         SD3.save()
-        recipe.objects.filter(recipeJSON__exact={'title':'Spaghetti Bolognese'}).delete()
         JSON3 = {
             "title": "Spaghetti Bolognese",
             "ingredients": {
@@ -228,7 +231,6 @@ class Command(BaseCommand):
 
 
 
-        recipe.objects.filter(recipeJSON__exact={'title':'Spaghetti Bolognese'}).delete()
         JSON4 = {
             "title": "Mushroom Risotto",
             "ingredients": {

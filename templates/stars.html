@@ -1,0 +1,16 @@
+ {% load static %}
+ <div class="rating">
+    <div class="stars">
+        <a>⭐</a>
+        <a>⭐</a>
+        <a>⭐</a>
+        <a>⭐</a>
+        <a>⭐</a>
+    </div>
+</div>
+<script>
+    //!!! id is declared here as DTL works on 'templates' only !!!
+    var recipeID = parseInt('{{ recipe.pk }}');
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'homeapp/js/rate.js' %}"></script>
