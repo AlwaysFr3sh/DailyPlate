@@ -6,32 +6,6 @@ from django.http import JsonResponse
 
 
 
-"""
-#TODO: move this to different file idk which file tho
-def get_user_recipes(username: str) -> list[Recipe]:
-  user = User.objects.get(username=username)
-  recipes = Recipe.objects.filter(user=user)
-  [print(recipe.id) for recipe in recipes]
-  recipes_json = [recipe.formattedJSON for recipe in recipes]
-  # incredibly scuffed
-  for recipe_json, recipe in zip(recipes_json, recipes):
-    recipe_json["id"] = recipe.id
-  return  {"recipes" : recipes_json }
-
-
-# Could be optimised to only return recipe objects in query
-def get_global_recipes() -> list[sharedRecipe]:
-  sRecipes = sharedRecipe.objects.filter()
-  [print(sRecipe.id) for sRecipe in sRecipes]
-  sRecipes_json = [sRecipe.formattedJSON() for sRecipe in sRecipes]
-  # incredibly scuffed
-  for sRecipes_json, sRecipe in zip(sRecipes_json, sRecipes):
-    sRecipes_json["id"] = sRecipe.id
-  return  { "sharedRecipes" : sRecipes_json }
-"""
-#!!!rewritten code above for new model architecture!!!
-
-
   
 
 # Display private and shared recipes
@@ -45,6 +19,8 @@ def home(request):
   }
   return render(request, "home.html", context=context)
   
+
+
 
 # Display single recipe. Requires user to be logged in.
 @login_required
@@ -77,6 +53,43 @@ def rateRecipe(request):
   else: resp['outcome_str'] = 'Rating failed. Either user has already rated this meal or the recipe no longer exists.'
   print(resp['outcome_str'])
   return JsonResponse(resp, status=200)
+
+
+
+
+
+
+
+
+#Recipe generation
+import json
+import sys
+from homeapp.api_call_functions.openaiapi import gpt_query
+from homeapp.utilities import read_file, construct_prompt
+def generateRecipe(request):
+  api_key = read_file("newopenaikey")
+  prompt = construct_prompt("dailyplate/prompts/prompt4.txt", [])
+  system_prompt = "You are a helpful assistant"
+  result = gpt_query(prompt, system_prompt, api_key)[0]
+  #result = read_file("dailyplate/prompts/testresult.txt")
+  result = result.replace("\\n", '')
+  print(result)
+  result=json.loads(result)
+  newRecipe=recipe(user=request.user, recipeJSON=result)
+  newRecipe.save()
+  resp={
+    'title': newRecipe.getTitle(),
+    'pk': newRecipe.pk
+    }
+  return JsonResponse(resp, status=200)
+
+
+
+
+
+
+
+
 
 
 def test_recipe_view(request):

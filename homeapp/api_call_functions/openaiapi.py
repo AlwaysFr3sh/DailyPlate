@@ -4,7 +4,7 @@ import sys
 # importing from adjacent directories has worked fine in other 
 # projects I've worked on
 sys.path.insert(1, "../")
-from dailyplate.utilities import read_file, construct_prompt
+from homeapp.utilities import read_file, construct_prompt
 
 # https://platform.openai.com/docs/api-reference/chat/create
 # https://gist.github.com/pszemraj/c643cfe422d3769fd13b97729cf517c5#file-inference_openai-py-L93
@@ -14,11 +14,11 @@ def gpt_query(prompt: str,
               api_key: str,
               model: str = "gpt-3.5-turbo",
               temperature: float = 0.3, 
-              max_tokens: int = 256, 
+              max_tokens: int = 1024, 
               n: int = 1, 
               presence_penalty: float = 0, 
               frequency_penalty: float = 0.1) -> list[str]:
-
+  print("GENERATING RECIPE...")
   openai.api_key = api_key
 
   messages = [
@@ -35,15 +35,14 @@ def gpt_query(prompt: str,
     presence_penalty=presence_penalty,
     frequency_penalty=frequency_penalty,
   )
-
   generated_texts = [choice.message["content"].strip() for choice in response["choices"]]
-
+  print("GENERATED")
   return generated_texts
 
 if __name__ == "__main__":
   # test code for development
   api_key = read_file("../newopenaikey")
-  prompt = construct_prompt("../dailyplate/prompts/GOOD_PROMPT_FOR_SINGLE_RECIPE.txt", [])
+  prompt = construct_prompt("../dailyplate/prompts/prompt4.txt", [])
   system_prompt = "You are a helpful assistant"
   result = gpt_query(prompt, system_prompt, api_key)
   print(result)
