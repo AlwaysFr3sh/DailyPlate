@@ -28,7 +28,6 @@ function getCookie(c_name)
               otherstar.classList.add("active");
             }
           });
-          //
 
           $.ajax({
             headers: { "X-CSRFToken": getCookie("csrftoken") },
