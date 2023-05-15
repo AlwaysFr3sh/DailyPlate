@@ -50,6 +50,35 @@
   color: #000000;
 }
 
+
+.stars {
+  display:flex;
+}
+.stars.disabled {
+  pointer-events: none;
+}
+.stars a {
+  opacity: 30%;
+  cursor: pointer;
+}
+
+.stars:hover a {
+  opacity: 100%;
+}
+
+.stars a:hover {
+  opacity: 100%;
+}
+
+.stars a:hover ~ a{
+  opacity: 30%;
+}
+
+.stars a.active {
+  opacity: 100%;
+}
+
+
 /*----------------------------------------*/
 /*------------ Recipe styling ------------*/
 .recipe {
@@ -100,4 +129,6 @@
 #login form button:hover {
   background-color: grey;
 }
+
+
 /*----------------------------------------*/

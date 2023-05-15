@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-
-
 <div class="recipe">
   <h2>{{ recipe.getTitle }}, by {{ user.username }} ({% if ratedByUser %}Public{% else %}Private{% endif %})</h2>
   <div class="ingredients">
@@ -26,51 +24,22 @@
 
   </div>
   
-
-  <script>
-    function rateRecipe() {
-      var userInput = prompt("Enter an rating from 0 to 10:");
-      //if user presses cancel
-      if (userInput === null) {
-          return; //break out of the function early
-      }
-      var number = parseInt(userInput);
-      if (!isNaN(number) && number >= 0 && number <= 10) {
-        location.href = ''
-        alert("Success!")
-        //!!!THESE TWO LINES ARE BROKEN, PAGE RESETS AFTER FUNCTION CALL?!!!
-        document.getElementById("rate_message").innerHTML = "Thanks for your feedback!"
-        document.getElementById("rate_button").disable
-        //TODO implement backend
-      } else {
-        alert("Invalid input. Please enter an integer from 0 to 10.");
-        rateRecipe();
-      }
-    }
-    function shareRecipe() {
-    ///TODO
-    }
-  </script>
-
+ 
 
   
   {% if recipe.shared %}
-    <p id="currentRating">This recipe is rated at {{ recipe.sharedDetails.currentRating }}, with feedback from {{ recipe.sharedDetails.numRatings }} user(s).</p>
+    <p id="currentRating">This recipe is rated at {{ recipe.sharedDetails.currentRating|floatformat:1 }}, with feedback from {{ recipe.sharedDetails.numRatings }} user(s).</p>
     {% if ratedByUser %}
-      You have already rated this meal!
+      You have already rated this meal at {{ givenRating }} stars!
     {% else %}
-      <div class="rating">
-        <h3 id="rate_message">Give this recipe a rating!</h4>
-        <button id="rate_button" onclick="rateRecipe()">Rate now</button>
-      </div>
-      {% endif %}
+      <p id="rate_message">Give this recipe a rating!</p>
+      {% include 'stars.html' %}
+    {% endif %}
   {% else %}
   <div class="upload">
-    <button onclick="shareRecipe()">Share this meal!</button>
-    <p id="result"></p>
+    <p id="rate_message">This recipe is currently private. Give it its first rating to make it public!</p>
+    {% include 'stars.html' %}    
   </div>
   {% endif %}
 </div>
-
-
 {% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 
 
@@ -50,16 +51,32 @@ def home(request):
 def renderRecipe(request, recipeID):
   selectedRecipe=recipe.objects.get(pk=recipeID)
   ratedByUser=selectedRecipe.ratedByUser(checkUser=request.user)
+  givenRating=selectedRecipe.givenRating(user=request.user)
   #ratedByUser bool must be parsed here as method cannot be called in DTL as it requires parameters
   context = {
     'recipe':selectedRecipe,
-    'ratedByUser':ratedByUser
+    'ratedByUser':ratedByUser,
+    'givenRating':givenRating
   }
   return render(request, "recipe.html", context)
 
 
 
-
+def rateRecipe(request):
+  selectedRecipe = recipe.objects.get(pk=request.POST.get('recipeID'))
+  newRating = int(request.POST.get('newRating'))
+  user = request.user
+  print("Attempting rating:")
+  print("\tUser: " + user.username)
+  print("\tRecipe: " + selectedRecipe.getTitle())
+  print("\tRating: " + str(newRating))
+  success = selectedRecipe.rate(user=user, newRating=newRating)
+  resp={}
+  if (success):
+    resp['outcome_str'] = 'Recipe has been sucessfully been rated'
+  else: resp['outcome_str'] = 'Rating failed. Either user has already rated this meal or the recipe no longer exists.'
+  print(resp['outcome_str'])
+  return JsonResponse(resp, status=200)
 
 
 def test_recipe_view(request):
