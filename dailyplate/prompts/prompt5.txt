@@ -1,0 +1,18 @@
+Give a meal recipe in the following json format.
+{
+  "title" : "<recipe title>",
+  "ingredients" : {
+    "<ingredient 1 name>" : {
+      "amount" : "<amount>",
+      "unit" : "<unit of measurement>",
+      "price" : "<price>"}
+    },
+  "instructions" : [
+    "<step 1>",
+    "<step n>"
+  ]
+}
+Some meals I have already tried are: <prev_meals>
+Do not give me a recipe that contains any of these: <disliked_ingredients>
+Give me proportions to server for 1 person with a bmi of <user_bmi>
+Price should be a float and should be measured in GBP. Amount should be a float. Unit of measurement should either be grams, millilitres,  quantity, teaspoon, or pinch. RETURN ONLY JSON AND NOTHING ELSE.

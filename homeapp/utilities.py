@@ -13,9 +13,13 @@ def calculate_ingredient_proportions(bmi:float, ingredients:dict) -> dict:
 #       api call x times. 
 # TODO: edit prompt to provide preference information in the form of meals that the user likes
 #       we will need to limit the maximum number of liked meals we provide. 
-def construct_prompt(prompt_template_path:str, liked_meals:list, num_meals=7) -> str:
+def construct_prompt(prompt_template_path:str, disliked_ingredients:list[str]=[], meal_history:list[str]=[], bmi:float=22.9) -> str:
   with open(prompt_template_path) as f:
     prompt = "".join(f.readlines())
+
+  prompt = prompt.replace("<prev_meals>", ", ".join(meal_history))
+  prompt = prompt.replace("<disliked_ingredients>", ", ".join(disliked_ingredients))
+  prompt = prompt.replace("<user_bmi>", str(bmi))
 
   return prompt
 
@@ -23,3 +27,8 @@ def construct_prompt(prompt_template_path:str, liked_meals:list, num_meals=7) ->
 def read_file(path):
   with open(path) as f: text = f.readlines()
   return "".join(text).replace("\n", "") 
+
+if __name__ == "__main__":
+  disliked_ingredients = ["peas", "corn"]
+  meal_history = ["spaghetti", "tortellini"]
+  print(construct_prompt("../dailyplate/prompts/prompt5.txt", disliked_ingredients=disliked_ingredients, meal_history=meal_history))

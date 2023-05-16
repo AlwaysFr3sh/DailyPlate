@@ -207,12 +207,7 @@
   font-weight: normal;
 }
 
-#login form input[type=text] {
-  padding: 5px 5px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-#login form input[type=password] {
+#login form input[type=text], input[type=password], input[type=email] {
   padding: 5px 5px;
   margin: 8px 0;
   box-sizing: border-box;
