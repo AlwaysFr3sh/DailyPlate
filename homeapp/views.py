@@ -56,7 +56,9 @@ def rateRecipe(request):
 
 
 
-
+def renderSettingsPage(request):
+  context={}
+  return render(request, "settings.html", context)
 
 
 

@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% block title %}Home{% endblock %}
+{% block title %}RecipeView{% endblock %}
 {% block content %}
 <div class="recipe">
-  <h2>{{ recipe.getTitle }}, by {{ user.username }} ({% if ratedByUser %}Public{% else %}Private{% endif %})</h2>
+  <h2>{{ recipe.getTitle }}, by {{ recipe.user.username }} ({% if ratedByUser %}Public{% else %}Private{% endif %})</h2>
   <div class="ingredients">
     <h3>Ingredients</h3>
 

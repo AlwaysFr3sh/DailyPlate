@@ -1,13 +1,13 @@
 function generateRecipe() {
     var personal_recipes = document.getElementById("personal_recipes");
     var ticket = document.createElement("div");
-    var title = document.createElement("a");
-    var status = document.createElement("p");
-    status.innerHTML = 'Loading...';         
+
+
+    ticket.innerHTML =   '<div class="loader"><div class="ball1"></div><div class="ball2"></div><div class="ball3"></div></div>';
     ticket.className = "recipe_preview"
-    ticket.appendChild(title);
-    ticket.appendChild(status);
     personal_recipes.appendChild(ticket);
+
+
     var btn = document.getElementById("generate_recipe_btn");
     btn.disabled=true;
     btn.innerHTML="Loading...";   
@@ -21,6 +21,11 @@ function generateRecipe() {
         data: {},
         success: function(response) {
           console.log(response)
+          ticket.innerHTML = "";
+          var title = document.createElement("a");
+          var status = document.createElement("p");    
+          ticket.appendChild(title);
+          ticket.appendChild(status);
           title.innerHTML = response['title'];
           title.href = "/home/recipe/" + response['pk'];
           status.innerHTML = 'Status: New';
@@ -31,5 +36,4 @@ function generateRecipe() {
           console.log(error)
         }
     });
-    
 }

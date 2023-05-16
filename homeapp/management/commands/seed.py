@@ -8,6 +8,9 @@ class Command(BaseCommand):
         sharedDetails.objects.all().delete()
         ratingHistory.objects.all().delete()
         UserSettings.objects.all().delete()
+        User.objects.all().delete()
+
+        User.objects.create_superuser('username', 'admin@example.com', 'password')
 
         #test users
         User.objects.filter(username="test1").delete()
