@@ -8,6 +8,8 @@ import sys
 from homeapp.api_call_functions.openaiapi import gpt_query
 from homeapp.utilities import read_file, construct_prompt
 import re
+import homeapp.api_call_functions.edamam
+from homeapp.api_call_functions.edamam import get_nutritional_info
 
 # Display private and shared recipes
 @login_required
@@ -71,7 +73,7 @@ def generateRecipe(request):
 
   # query openai
   system_prompt = "You are a helpful assistant"
-  api_key = read_file("openaikey")
+  api_key = "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"
   result = gpt_query(prompt, system_prompt, api_key, temperature=1.0)[0]
   #result = read_file("dailyplate/prompts/testresult.txt")
   result = result.replace("\\n", '')
@@ -81,7 +83,28 @@ def generateRecipe(request):
   result = result[begin: end+1]
   print(result)
   result=json.loads(result)
+  # for ingredient in result.values():
+  #   temp = get_nutritional_info(ingredient)
+
+  #   result['ingredients']['kcals'] = (temp['calories'])
   newRecipe=recipe(user=request.user, recipeJSON=result)
+
+  for ingredient_name in result['ingredients'].keys():
+    
+    result['ingredients'][ingredient_name]['nutrition'] = get_nutritional_info(ingredient_name)
+
+
+  #print("Nutritional Information:")
+    #     print("Calories:", result['calories'])
+    #     print("Protein:", result['totalNutrients']['PROCNT']['quantity'], result['totalNutrients']['PROCNT']['unit'])
+    #     print("Carbohydrates:", result['totalNutrients']['CHOCDF']['quantity'], result['totalNutrients']['CHOCDF']['unit'])
+
+
+  
+#     {% for ingredient, ingredient_data in recipe.recipeJSON.ingredients.items %}
+#       <li> {{ ingredient_data.amount }} {{ ingredient_data.unit }} {{ ingredient }}</li>
+#     {% endfor %}
+
   newRecipe.save()
   resp={
     'title': newRecipe.getTitle(),
