@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Home{% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
@@ -6,7 +7,7 @@
 Something wrong here, dtl still tries to load recipies when user is not authenticated
 -->
   <p>Hi {{ user.username }}!</p>
-  <div id="recipe_container">
+  <div id="personal_recipes" class="recipe_container">
     <h2>Your Meals</h2>
     {% for personalRecipe in personalRecipes %} 
       <div class="recipe_preview">
@@ -19,12 +20,13 @@ Something wrong here, dtl still tries to load recipies when user is not authenti
   </div>
 
 
-  <div id="recipe_container">
+  <div class="recipe_container">
     <h2>Global meals</h2>
     {% for globalRecipe in globalRecipes %} 
       <div class="recipe_preview">
         <a href="{% url 'render_recipe' recipeID=globalRecipe.pk %}">{{ globalRecipe.getTitle }}</a>
         <p>Rating: {{ globalRecipe.sharedDetails.currentRating|floatformat:1 }}</p>
+        <p>User: {{ globalRecipe.user.username }}</p>
       </div>
     {% endfor %}
   </div>
@@ -33,4 +35,12 @@ Something wrong here, dtl still tries to load recipies when user is not authenti
   <p>You are not logged in</p>
   <a href="{% url 'login' %}">Log In</a>
 {% endif %}
+
+
+
+<script type="text/javascript" src="{% static 'homeapp/js/generate.js' %}"></script>
+<button id="generate_recipe_btn" onclick="generateRecipe()">Generate a new meal!</button>
+
+
+
 {% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
+from homeapp.models import UserSettings
 
 
 ###overwriting form to include email
@@ -17,6 +18,7 @@ class UserCreationForm(UserCreationForm):
         user.email = self.cleaned_data["email"]
         if commit:
             user.save()
+            UserSettings(user=user).save()
         return user
 
 

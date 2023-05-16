@@ -4,6 +4,7 @@ homeapp/migrations/*
 
 openaikey
 newopenaikey
+personalopenaikey
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

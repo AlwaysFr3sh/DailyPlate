@@ -2,21 +2,25 @@ from django.core.management.base import BaseCommand
 from homeapp.models import *
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        #test users
-        User.objects.filter(username="test1").delete()
-        U1 = User(email="test1@example.com", username="test1")
-        U1.set_password('test1')
-        U1.save()
-        User.objects.filter(username="test2").delete()
-        U2 = User(email="test2@example.com", username="test2")
-        U2.set_password('test2')
-        U2.save()
 
         #clear tables
         recipe.objects.all().delete()
         sharedDetails.objects.all().delete()
         ratingHistory.objects.all().delete()
+        UserSettings.objects.all().delete()
 
+        #test users
+        User.objects.filter(username="test1").delete()
+        U1 = User(email="test1@example.com", username="test1")
+        U1.set_password('test1')
+        U1.save()
+        UserSettings(user=U1).save()
+
+        User.objects.filter(username="test2").delete()
+        U2 = User(email="test2@example.com", username="test2")
+        U2.set_password('test2')
+        U2.save()
+        UserSettings(user=U2, height=69.0, weight=69.0).save()
 
         #R1 is a global recipe
         SD1=sharedDetails(numRatings=2, currentRating=4)
