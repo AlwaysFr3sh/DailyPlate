@@ -3,10 +3,11 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-
-
-
-  
+import json
+import sys
+from homeapp.api_call_functions.openaiapi import gpt_query
+from homeapp.utilities import read_file, construct_prompt
+import re
 
 # Display private and shared recipes
 @login_required
@@ -18,9 +19,6 @@ def home(request):
     "globalRecipes" : globalRecipes,
   }
   return render(request, "home.html", context=context)
-  
-
-
 
 # Display single recipe. Requires user to be logged in.
 @login_required
@@ -54,25 +52,33 @@ def rateRecipe(request):
   print(resp['outcome_str'])
   return JsonResponse(resp, status=200)
 
-
-
-
-
-
-
-
 #Recipe generation
-import json
-import sys
-from homeapp.api_call_functions.openaiapi import gpt_query
-from homeapp.utilities import read_file, construct_prompt
 def generateRecipe(request):
-  api_key = read_file("newopenaikey")
-  prompt = construct_prompt("dailyplate/prompts/prompt4.txt", [])
+
+  # get 5 most recent meals
+  prev_meals = recipe.objects.filter(user=request.user).order_by('-id')[:5]
+  prev_meals_titles = [meal.getTitle() for meal in prev_meals]
+
+  # get disliked ingredients
+  settings = UserSettings.objects.get(user=request.user.pk)
+
+  # construct prompt
+  prompt = construct_prompt("dailyplate/prompts/prompt5.txt",
+                            disliked_ingredients=settings.getDislikedFoods(), 
+                            meal_history=prev_meals_titles, 
+                            bmi=settings.getBMI())
+  print(prompt)
+
+  # query openai
   system_prompt = "You are a helpful assistant"
-  result = gpt_query(prompt, system_prompt, api_key)[0]
+  api_key = read_file("openaikey")
+  result = gpt_query(prompt, system_prompt, api_key, temperature=1.0)[0]
   #result = read_file("dailyplate/prompts/testresult.txt")
   result = result.replace("\\n", '')
+  print(result)
+  # strip any text from outside of the json
+  begin, end = result.find('{'), result.rfind('}')
+  result = result[begin: end+1]
   print(result)
   result=json.loads(result)
   newRecipe=recipe(user=request.user, recipeJSON=result)
@@ -82,15 +88,6 @@ def generateRecipe(request):
     'pk': newRecipe.pk
     }
   return JsonResponse(resp, status=200)
-
-
-
-
-
-
-
-
-
 
 def test_recipe_view(request):
   context = {
