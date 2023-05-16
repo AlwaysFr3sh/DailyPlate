@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
+from homeapp.utilities import calculate_bmi
 
 #stores relevant information for recipes that have been shared
 class sharedDetails(models.Model):
@@ -17,6 +18,38 @@ class sharedDetails(models.Model):
     def __str__(self):
         return "pk:" + str(self.pk) + ", numRatings:" + str(self.numRatings) + ", Rating:" + str(self.currentRating)
 
+class UserSettings(models.Model):
+    #user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True) 
+    height = models.FloatField(default=179.8) # cm
+    weight = models.FloatField(default=84.0) # kg
+    dislikedFoods = models.TextField()
+    delim = ','
+
+    def addDislikedFood(self, newDisliked:str):
+        self.dislikedFoods += (newDisliked + self.delim)
+        self.save()
+
+    def removeDislikedFood(self, value: str):
+        self.dislikedFoods.replace((value + self.delim), "")
+        self.save()
+
+    def getDislikedFoods(self):
+        return self.dislikedFoods.split(self.delim)[:-1]
+
+    def updateHeight(self, newHeight):
+        self.height = newHeight
+        self.save()
+
+    def updateWeight(self, newWeight):
+        self.weight = newWeight
+        self.save()
+
+    def getBMI(self):
+        return calculate_bmi(self.height, self.weight)
+
+    def __str__(self):
+        return f"Height: {self.height}cm Weight: {self.weight}kg Disliked Foods: {self.getDislikedFoods()}"
 
 
 #MAIN MODEL FOR RECIPE OBJECTS

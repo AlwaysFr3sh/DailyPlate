@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(recipe)
 admin.site.register(sharedDetails)
 admin.site.register(ratingHistory)
+admin.site.register(UserSettings)
