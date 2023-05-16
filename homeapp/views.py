@@ -91,11 +91,75 @@ def generateRecipe(request):
 
 
 
+
+
+
+
+from django import forms
+class UserSettingsForm(forms.ModelForm):
+  height = forms.DecimalField(
+        required=True,
+        label='Height (cm)', 
+        max_digits=5,
+        decimal_places=2,
+        max_value=300,
+        min_value=0
+  )
+  weight = forms.DecimalField(
+        required=True,
+        label='Weight (kg)',
+        max_digits=5,
+        decimal_places=2,
+        max_value=300,
+        min_value=0
+  )
+  dislikedFoods = forms.CharField(
+        required=True,
+        label='Ingredient Blacklist (enter foods separated by commas):',
+        max_length=1024,
+        )
+  
+  class Meta:
+    model = UserSettings
+    fields = ['height', 'weight', 'dislikedFoods']
+
+  def save(self, settings, commit=True):
+    UserSettings = super().save(commit=False)
+    settings.dislikedFoods=self.cleaned_data["dislikedFoods"]
+    settings.height=self.cleaned_data["height"]
+    settings.weight=self.cleaned_data["weight"]
+    if commit:
+      settings.save()
+    return
+
+
+
 def renderSettingsPage(request):
+  user=request.user
+  settings=UserSettings.objects.get(user=user)
+  initial_values = {
+      'height': settings.height,
+      'weight': settings.weight,
+      'dislikedFoods': settings.dislikedFoods
+  }
+
+  if request.method == 'POST':
+    form = UserSettingsForm(request.POST)
+    if form.is_valid():
+      settings = UserSettings.objects.get(user=request.user)
+      form.save(settings=settings)
+      # Redirect or do something else
+  else:
+    form = UserSettingsForm(initial=initial_values)
+  return render(request, "settings.html", {'form':form})
+
+"""
+def renderSettingsPage(request):
+  #get current settings to display
+
   context={}
   return render(request, "settings.html", context)
-
-
+"""
 
 
 def test_recipe_view(request):

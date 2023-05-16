@@ -1,0 +1,11 @@
+{% load static %}
+
+<div class="wrapper">
+  <h3>Ingredient blacklist</h3>
+  <p class="info">Enter a food to blacklist & click enter.</p>
+  <input pattern="[A-Za-z]+" type="text" id="hashtags" autocomplete="off">
+  <div class="tag-container">
+  </div>
+</div>
+
+<script type="text/javascript" src="{% static 'homeapp/js/tags.js' %}"></script>
