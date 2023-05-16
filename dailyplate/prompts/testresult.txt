@@ -1,0 +1,58 @@
+{
+  "title": "Spaghetti Bolognese",
+  "ingredients": {
+    "spaghetti": {
+      "amount": 400,
+      "unit": "grams",
+      "price": 0.75
+    },
+    "minced beef": {
+      "amount": 500,
+      "unit": "grams",
+      "price": 3.50
+    },
+    "onion": {
+      "amount": 1,
+      "unit": "quantity",
+      "price": 0.20
+    },
+    "garlic cloves": {
+      "amount": 2,
+      "unit": "quantity",
+      "price": 0.10
+    },
+    "canned tomatoes": {
+      "amount": 400,
+      "unit": "grams",
+      "price": 0.50
+    },
+    "tomato puree": {
+      "amount": 2,
+      "unit": "teaspoon",
+      "price": 0.10
+    },
+    "dried oregano": {
+      "amount": 1,
+      "unit": "teaspoon",
+      "price": 0.10
+    },
+    "salt": {
+      "amount": 1,
+      "unit": "pinch",
+      "price": 0.05
+    },
+    "black pepper": {
+      "amount": 1,
+      "unit": "pinch",
+      "price": 0.05
+    }
+  },
+  "instructions": [
+    "Cook spaghetti according to package instructions.",
+    "In a separate pan, cook minced beef until browned.",
+    "Add chopped onion and garlic to the pan and cook until softened.",
+    "Add canned tomatoes, tomato puree, dried oregano, salt, and black pepper to the pan and stir well.",
+    "Simmer for 10-15 minutes until the sauce has thickened.",
+    "Serve the spaghetti with the Bolognese sauce on top."
+  ]
+}

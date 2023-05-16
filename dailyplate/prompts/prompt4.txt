@@ -12,4 +12,4 @@ Give a meal recipe in the following json format.
     "<step n>"
   ]
 }
-Price should be a float and should be measured in GBP. Amount should be a float. Unit of measurement should either be grams, millilitres,  quantity, teaspoon, or pinch.
+Price should be a float and should be measured in GBP. Amount should be a float. Unit of measurement should either be grams, millilitres,  quantity, teaspoon, or pinch. Return the JSON only and nothing else.

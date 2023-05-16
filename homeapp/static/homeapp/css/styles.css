@@ -31,7 +31,7 @@
 /*----------------------------------------*/
 /*------------- Home styling -------------*/
 
-#recipe_container {
+.recipe_container {
   padding: 0% 1% 0% 1%;
   font-family: "Tahoma";
 }
