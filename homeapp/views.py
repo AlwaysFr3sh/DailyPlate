@@ -89,6 +89,15 @@ def generateRecipe(request):
     }
   return JsonResponse(resp, status=200)
 
+
+
+def renderSettingsPage(request):
+  context={}
+  return render(request, "settings.html", context)
+
+
+
+
 def test_recipe_view(request):
   context = {
     "title" : "<recipe title>",
