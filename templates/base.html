@@ -12,8 +12,7 @@
 <body>
   {# Navbar, will need to add more pages here as we build them #}
   <ul id="navbar">
-    <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'settings' %}">Generation config</a></li>
+    <li><a href="{% url 'home' %}"><img width="25px" src="{% static 'homeapp/logo.svg'%}"></a></li>
     <li style="float: right"><a href="{% url 'logout' %}">Log Out</a></li>
   </ul>
   <main>

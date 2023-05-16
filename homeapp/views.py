@@ -12,7 +12,7 @@ import re
 # Display private and shared recipes
 @login_required
 def home(request):
-  personalRecipes = recipe.objects.filter(user=request.user)
+  personalRecipes = reversed(recipe.objects.filter(user=request.user))
   globalRecipes = [r for r in recipe.objects.filter() if r.shared()]
   context = {
     "personalRecipes" : personalRecipes,

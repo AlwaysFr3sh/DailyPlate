@@ -6,39 +6,47 @@
 <!--
 Something wrong here, dtl still tries to load recipies when user is not authenticated
 -->
-  <p>Hi {{ user.username }}!</p>
-  <div id="personal_recipes" class="recipe_container">
-    <h2>Your Meals</h2>
-    {% for personalRecipe in personalRecipes %} 
-      <div class="recipe_preview">
-        <a href="{% url 'render_recipe' recipeID=personalRecipe.pk %}">{{ personalRecipe.getTitle }}</a>
-        <p>Status: {% if personalRecipe.shared %}public</p>
-        <p>Rating: {{ personalRecipe.sharedDetails.currentRating|floatformat:1 }}</p>
-        {% else %}private{% endif %}</p>
-      </div>
-    {% endfor %}
+<script type="text/javascript" src="{% static 'homeapp/js/generate.js' %}"></script>
+<button id="generate_recipe_btn" onclick="generateRecipe()">Generate a new meal!</button>
+
+<p>Hi {{ user.username }}!</p>
+<h2>Your Meals</h2>
+<div  class="recipe_container">
+  <div class="cards-container">
+    <div id="personal_recipes"class="cards">
+      {% for personalRecipe in personalRecipes %}
+        <a class="cardlink" href="{% url 'render_recipe' recipeID=personalRecipe.pk %}">
+          <div class="recipe_preview">
+            <p class="recipe_title">{{personalRecipe.getTitle}}</p>
+            <p>Status: {% if personalRecipe.shared %}public{% else %}private{% endif %}</p>
+            <p>Rating: {{ personalRecipe.sharedDetails.currentRating|floatformat:1 }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
   </div>
+</div>
 
-
-  <div class="recipe_container">
-    <h2>Global meals</h2>
+<h2>Global meals</h2>
+<div class="recipe_container">
+  <div class="cards-container">
+    <div class="cards">
     {% for globalRecipe in globalRecipes %} 
-      <div class="recipe_preview">
-        <a href="{% url 'render_recipe' recipeID=globalRecipe.pk %}">{{ globalRecipe.getTitle }}</a>
-        <p>Rating: {{ globalRecipe.sharedDetails.currentRating|floatformat:1 }}</p>
-        <p>User: {{ globalRecipe.user.username }}</p>
-      </div>
+      <a class="cardlink" href="{% url 'render_recipe' recipeID=globalRecipe.pk %}">
+        <div class="recipe_preview">
+          <p class="recipe_title">{{ globalRecipe.getTitle }}</p>
+          <p>Rating: {{ globalRecipe.sharedDetails.currentRating|floatformat:1 }}</p>
+          <p>User: {{ globalRecipe.user.username }}</p>
+        </div>
+      </a>
     {% endfor %}
+    </div>
   </div>
+</div>
   
 {% else %}
   <p>You are not logged in</p>
   <a href="{% url 'login' %}">Log In</a>
 {% endif %}
-
-
-
-<script type="text/javascript" src="{% static 'homeapp/js/generate.js' %}"></script>
-<button id="generate_recipe_btn" onclick="generateRecipe()">Generate a new meal!</button>
 
 {% endblock %}
