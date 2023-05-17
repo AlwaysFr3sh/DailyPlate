@@ -1,14 +1,23 @@
+
+body {
+  color: rgb(45, 46, 53);
+  background-color:rgb(241, 234, 231);
+}
 /*------------ Navbar styling ------------*/
+
 #navbar {
   list-style-type: none;
-  margin: 0;
+  margin: auto;
   padding: 0;
   overflow: hidden;
-  background-color: #FFFFFF;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1); 
+  background-color:rgb(256, 256, 256);
 }
 
 #navbar li {
-  float: left;
+  float:left;
+  height: 50px;
+  line-height: 30px;
 }
 
 #navbar li a {
@@ -16,14 +25,13 @@
   text-align: center;
   padding: 10px 10px;
   text-decoration: none;
-  padding: 8px;
-  color: black;
   font-family: "Tahoma", "Arial";
+  color: rgb(45, 46, 53);
 }
-
 #navbar li a:hover {
   color: #FF9B6B;
 }
+
 
 #logout {
   float: right;
@@ -34,6 +42,7 @@
 h2 {
   font-family: "Tahoma","Arial";
   font-weight: normal;
+  padding-left: 20px;
 }
 
 .recipe_container {
@@ -61,6 +70,7 @@ h2 {
   display: inline-block;
   word-break: break-word;
   padding: 15px;
+  background-color:rgb(256, 256, 256);
 }
 .recipe_preview p {
   overflow-wrap: break-word;
@@ -71,7 +81,6 @@ h2 {
 }
 .cardlink {
   text-decoration: none;
-  color: black;
   margin: 0;
 }
 
@@ -81,7 +90,7 @@ h2 {
 }
 .cardlink {
   text-decoration: none;
-  color: #000;
+  color: rgb(45, 46, 53);
 }
 
 .recipe_title {
@@ -90,16 +99,22 @@ h2 {
 
 #generate_recipe_btn {
   margin-top: 15px;
-  padding: 10px 20px;
+  padding: 20px 20px;
   background: none;
   border: none;
   background-color: #FF9B6B; 
-  color: #000;
+  color: rgb(45, 46, 53);
   border-radius: 4px;
   font-size: medium;
+  font-size:larger;
 }
 #generate_recipe_btn:hover {
   background-color: grey;
+}
+
+#generate_recipe_div {
+  text-align: center;
+  padding: 100px 100px;
 }
 
 /*----------------------------------------*/
@@ -110,6 +125,7 @@ h2 {
   border-radius: 0.5%;
   font-family: "Tahoma", "Arial";
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1); 
+  background-color: #ffffff;
 }
 .recipe h2 {
   font-weight: normal;
@@ -120,7 +136,7 @@ h2 {
 /*----------------------------------------*/
 /*------------ Login styling -------------*/
 #login {
-  margin-top:30%;
+  margin-top:10%;
   display: flex;
   justify-content: space-around;
   font-family: "Tahoma", "Arial";
@@ -140,7 +156,6 @@ h2 {
   background: none;
   border: none;
   background-color: #FF9B6B; 
-  color: #000;
   border-radius: 4px;
 }
 

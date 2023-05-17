@@ -7,9 +7,12 @@
 Something wrong here, dtl still tries to load recipies when user is not authenticated
 -->
 <script type="text/javascript" src="{% static 'homeapp/js/generate.js' %}"></script>
-<button id="generate_recipe_btn" onclick="generateRecipe()">Generate a new meal!</button>
+<div id="generate_recipe_div">
 
-<p>Hi {{ user.username }}!</p>
+  <button id="generate_recipe_btn" onclick="generateRecipe()">Generate a new meal!</button>
+
+</div>
+
 <h2>Your Meals</h2>
 <div  class="recipe_container">
   <div class="cards-container">
