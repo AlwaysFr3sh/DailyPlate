@@ -21,16 +21,22 @@ function generateRecipe() {
         data: {},
         success: function(response) {
           console.log(response)
-          recipe_preview.innerHTML = "";
-          var title = document.createElement("p");
-          var status = document.createElement("p");    
-          title.className = "recipe_title";
-          recipe_preview.appendChild(title);
-          recipe_preview.appendChild(status);
-          title.innerHTML = response['title'];
-          //title.href = "/home/recipe/" + response['pk'];
-          cardlink.href = "/home/recipe/" + response['pk'];
-          status.innerHTML = 'Status: New';
+          if(response['success']){
+            recipe_preview.innerHTML = "";
+            var title = document.createElement("p");
+            var status = document.createElement("p");    
+            var price = document.createElement("p");  
+            title.className = "recipe_title";
+            recipe_preview.appendChild(title);
+            recipe_preview.appendChild(status);
+            recipe_preview.appendChild(price);
+            title.innerHTML = response['title'];
+            cardlink.href = "/home/recipe/" + response['pk'];
+            status.innerHTML = 'Status: New';
+            price.innerHTML = "Estimated price: £" + response['price']
+          }else{
+            recipe_preview.innerHTML = "Generation Failed!";
+          }
           btn.disabled=false;
           btn.innerHTML="Generate a new meal!";   
         },

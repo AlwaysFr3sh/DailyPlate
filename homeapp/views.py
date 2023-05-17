@@ -14,8 +14,8 @@ from homeapp.api_call_functions.edamam import get_nutritional_info
 # Display private and shared recipes
 @login_required
 def home(request):
-  personalRecipes = reversed(recipe.objects.filter(user=request.user))
-  globalRecipes = [r for r in recipe.objects.filter() if r.shared()]
+  personalRecipes = recipe.objects.filter(user=request.user).order_by('-id')
+  globalRecipes = [r for r in recipe.objects.filter().order_by('-id') if r.shared()]
   context = {
     "personalRecipes" : personalRecipes,
     "globalRecipes" : globalRecipes,
@@ -82,36 +82,37 @@ def generateRecipe(request):
   begin, end = result.find('{'), result.rfind('}')
   result = result[begin: end+1]
   print(result)
-  result=json.loads(result)
-  # for ingredient in result.values():
-  #   temp = get_nutritional_info(ingredient)
 
-  #   result['ingredients']['kcals'] = (temp['calories'])
-  newRecipe=recipe(user=request.user, recipeJSON=result)
-
-  for ingredient_name in result['ingredients'].keys():
-    
-    result['ingredients'][ingredient_name]['nutrition'] = get_nutritional_info(ingredient_name)
+  try:
+    result=json.loads(result)
 
 
-  #print("Nutritional Information:")
-    #     print("Calories:", result['calories'])
-    #     print("Protein:", result['totalNutrients']['PROCNT']['quantity'], result['totalNutrients']['PROCNT']['unit'])
-    #     print("Carbohydrates:", result['totalNutrients']['CHOCDF']['quantity'], result['totalNutrients']['CHOCDF']['unit'])
+    # for ingredient in result.values():
+    #   temp = get_nutritional_info(ingredient)
+
+    #   result['ingredients']['kcals'] = (temp['calories'])
+    newRecipe=recipe(user=request.user, recipeJSON=result)
+
+    for ingredient_name in result['ingredients'].keys():
+      result['ingredients'][ingredient_name]['nutrition'] = get_nutritional_info(ingredient_name)
 
 
-  
-#     {% for ingredient, ingredient_data in recipe.recipeJSON.ingredients.items %}
-#       <li> {{ ingredient_data.amount }} {{ ingredient_data.unit }} {{ ingredient }}</li>
-#     {% endfor %}
-
-  newRecipe.save()
-  resp={
-    'title': newRecipe.getTitle(),
-    'pk': newRecipe.pk
+    #print("Nutritional Information:")
+      #     print("Calories:", result['calories'])
+      #     print("Protein:", result['totalNutrients']['PROCNT']['quantity'], result['totalNutrients']['PROCNT']['unit'])
+      #     print("Carbohydrates:", result['totalNutrients']['CHOCDF']['quantity'], result['totalNutrients']['CHOCDF']['unit']
+    newRecipe.save()
+    resp={
+      'title': newRecipe.getTitle(),
+      'pk': newRecipe.pk,
+      'success': True,
+      'price': round(newRecipe.estimatePrice(), 2)
+      }
+  except:
+    resp={
+      'success': False
     }
   return JsonResponse(resp, status=200)
-
 
 
 
@@ -136,19 +137,21 @@ class UserSettingsForm(forms.ModelForm):
         max_value=300,
         min_value=0
   )
+
   dislikedFoods = forms.CharField(
         required=True,
         label='Ingredient Blacklist (enter foods separated by commas):',
         max_length=1024,
         )
-  
+
+
   class Meta:
     model = UserSettings
     fields = ['height', 'weight', 'dislikedFoods']
 
   def save(self, settings, commit=True):
     UserSettings = super().save(commit=False)
-    settings.dislikedFoods=self.cleaned_data["dislikedFoods"]
+    settings.dislikedFoods=self.cleaned_data["dislikedFoods"] + ","
     settings.height=self.cleaned_data["height"]
     settings.weight=self.cleaned_data["weight"]
     if commit:

@@ -129,7 +129,7 @@ h2 {
   font-weight: normal;
 }
 
-#login form input[type=text], input[type=password], input[type=email] {
+#login form input[type=text], input[type=password], input[type=email], input[type=number] {
   padding: 5px 5px;
   margin: 8px 0;
   box-sizing: border-box;

@@ -9,6 +9,7 @@ app_id= "7528744b"
 app_key= "9d0aeab544b738d42bfa62125a86a94b"
     
 def get_nutritional_info(food_item):
+    print("FETCHING NUTRITIONAL INFO FOR \n" + str(food_item))
     base_url = 'https://api.edamam.com/api/nutrition-data'
     params = {
     'app_id': "28946ca6",

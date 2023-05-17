@@ -19,7 +19,10 @@ Something wrong here, dtl still tries to load recipies when user is not authenti
           <div class="recipe_preview">
             <p class="recipe_title">{{personalRecipe.getTitle}}</p>
             <p>Status: {% if personalRecipe.shared %}public{% else %}private{% endif %}</p>
-            <p>Rating: {{ personalRecipe.sharedDetails.currentRating|floatformat:1 }}</p>
+            <p>Estimated price: £{{ personalRecipe.estimatePrice|floatformat:2 }}</p>
+            {% if personalRecipe.shared %}
+              <p>Rating: {{ personalRecipe.sharedDetails.currentRating|floatformat:1 }}</p>
+            {% endif %}
           </div>
         </a>
       {% endfor %}
@@ -35,8 +38,9 @@ Something wrong here, dtl still tries to load recipies when user is not authenti
       <a class="cardlink" href="{% url 'render_recipe' recipeID=globalRecipe.pk %}">
         <div class="recipe_preview">
           <p class="recipe_title">{{ globalRecipe.getTitle }}</p>
-          <p>Rating: {{ globalRecipe.sharedDetails.currentRating|floatformat:1 }}</p>
           <p>User: {{ globalRecipe.user.username }}</p>
+          <p>Estimated price: £{{ globalRecipe.estimatePrice|floatformat:2 }}</p>
+          <p>Rating: {{ globalRecipe.sharedDetails.currentRating|floatformat:1 }}</p>
         </div>
       </a>
     {% endfor %}
