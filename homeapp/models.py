@@ -23,7 +23,7 @@ class UserSettings(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True) 
     height = models.FloatField(default=179.8) # cm
     weight = models.FloatField(default=84.0) # kg
-    dislikedFoods = models.TextField()
+    dislikedFoods = models.TextField(max_length=1024)
     delim = ','
 
     def addDislikedFood(self, newDisliked:str):

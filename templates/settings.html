@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}RecipeView{% endblock %}
+{% block title %}SettingsPage{% endblock %}
 {% block content %}
-settignS!
+
+<!--
+{% include 'tags.html' %}
+<label for="height">Height:</label>
+<input type="text" id="height" autocomplete="off">
+<label for="weight">weight:</label>
+<input type="text" id="weight" autocomplete="off">
+-->
+
+<div class="recipe">
+    <form method="post">
+        <h2>Settings:</h2>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+</div>
+
 {% endblock %}
