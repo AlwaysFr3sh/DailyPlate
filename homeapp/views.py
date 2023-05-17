@@ -74,16 +74,16 @@ def generateRecipe(request):
   # query openai
   system_prompt = "You are a helpful assistant"
   api_key = "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"
-  result = gpt_query(prompt, system_prompt, api_key, temperature=1.0)[0]
-  #result = read_file("dailyplate/prompts/testresult.txt")
-  result = result.replace("\\n", '')
-  print(result)
-  # strip any text from outside of the json
-  begin, end = result.find('{'), result.rfind('}')
-  result = result[begin: end+1]
-  print(result)
 
   try:
+    result = gpt_query(prompt, system_prompt, api_key, temperature=1.0)[0]
+    #result = read_file("dailyplate/prompts/testresult.txt")
+    result = result.replace("\\n", '')
+    print(result)
+    # strip any text from outside of the json
+    begin, end = result.find('{'), result.rfind('}')
+    result = result[begin: end+1]
+    print(result)
     result=json.loads(result)
 
 
