@@ -18,7 +18,7 @@
   text-decoration: none;
   padding: 8px;
   color: black;
-  font-family: "Tahoma"
+  font-family: "Tahoma", "Arial";
 }
 
 #navbar li a:hover {
@@ -31,39 +31,127 @@
 /*----------------------------------------*/
 /*------------- Home styling -------------*/
 
-.recipe_container {
-  padding: 0% 1% 0% 1%;
-  font-family: "Tahoma";
-}
-#recipe_container h2 {
+h2 {
+  font-family: "Tahoma","Arial";
   font-weight: normal;
 }
 
+.recipe_container {
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.cards-container {
+  display: inline-block;
+  padding: 10px;
+}
+
+.cards {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
 .recipe_preview {
-  padding: 2%;
-  max-width: 300px;
-  text-align: center;
+  /* Your recipe preview styles */
+  width: 175px;
+  height: 175px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1); 
+  font-family: "Tahoma", "Arial";
+  display: inline-block;
+  word-break: break-word;
+  padding: 15px;
+}
+.recipe_preview p {
+  overflow-wrap: break-word;
+}
+
+.recipe_preview:hover {
+  background-color: #f5f5f5;
+}
+.cardlink {
+  text-decoration: none;
+  color: black;
+  margin: 0;
+}
+
+.add-recipe p {
+  text-align: center;  
+  vertical-align: middle;
+}
+.cardlink {
+  text-decoration: none;
+  color: #000;
+}
+
+.recipe_title {
+  font-weight: bold;
+}
+
+#generate_recipe_btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  background-color: #FF9B6B; 
+  color: #000;
+  border-radius: 4px;
+  font-size: medium;
+}
+#generate_recipe_btn:hover {
+  background-color: grey;
+}
+
+/*----------------------------------------*/
+/*------------ Recipe styling ------------*/
+.recipe {
+  margin: 2.5% 5% 2.5% 5%;
+  padding: 5%;
+  border-radius: 0.5%;
+  font-family: "Tahoma", "Arial";
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1); 
 }
-.recipe_preview a {
-  text-decoration: none;
-  color: #000000;
+.recipe h2 {
+  font-weight: normal;
+}
+.recipe h3 {
+  font-weight: normal;
+}
+/*----------------------------------------*/
+/*------------ Login styling -------------*/
+#login {
+  margin-top:30%;
+  display: flex;
+  justify-content: space-around;
+  font-family: "Tahoma", "Arial";
+}
+#login form h2 {
+  font-weight: normal;
 }
 
+#login form input[type=text], input[type=password], input[type=email] {
+  padding: 5px 5px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
 
+#login form button {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  background-color: #FF9B6B; 
+  color: #000;
+  border-radius: 4px;
+}
 
+#login form button:hover {
+  background-color: grey;
+}
 
-
-
-
-
-
-
-/*--------------------------------------------------*/
-/*------------- loading widget styling -------------*/
-
+/*----------------------------------------*/
 .loader  {
   margin: auto;
+  margin-top: 40%;
   display: inline-block;
   height: 40px;
   width: 80px;
@@ -118,6 +206,7 @@
     background: #444;
   }
 }
+
 
 
 
@@ -256,50 +345,4 @@ input {
 
 
 /*----------------------------------------*/
-/*------------ Recipe styling ------------*/
-.recipe {
-  margin: 2.5% 5% 2.5% 5%;
-  padding: 5%;
-  border-radius: 0.5%;
-  font-family: "Tahoma";
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1); 
-}
-.recipe h2 {
-  font-weight: normal;
-}
-.recipe h3 {
-  font-weight: normal;
-}
-/*----------------------------------------*/
-/*------------ Login styling -------------*/
-#login {
-  margin-top:30%;
-  display: flex;
-  justify-content: space-around;
-  font-family: "Tahoma";
-}
-#login form h2 {
-  font-weight: normal;
-}
-
-#login form input[type=text], input[type=password], input[type=email] {
-  padding: 5px 5px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-
-#login form button {
-  padding: 10px 20px;
-  background: none;
-  border: none;
-  background-color: #FF9B6B; 
-  color: #000;
-  border-radius: 4px;
-}
-
-#login form button:hover {
-  background-color: grey;
-}
-
-
 /*----------------------------------------*/

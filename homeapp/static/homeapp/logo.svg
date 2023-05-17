@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" width="1080" height="1080" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+  <desc>Created with Fabric.js 5.2.4</desc>
+  <g transform="matrix(1 0 0 1 540 540)" id="c439eedf-fa74-4300-91bf-1d0f057c2b9b">
+    <rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke" x="-540" y="-540" rx="0" ry="0" width="1080" height="1080"/>
+  </g>
+  <g transform="matrix(1 0 0 1 540 540)" id="30641731-d663-4492-9584-8f57a080a458"/>
+  <g transform="matrix(1 0 0 1 50 50)">
+    <rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-opacity: 0; fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke" x="-50" y="-50" rx="0" ry="0" width="100" height="100"/>
+  </g>
+  <g transform="matrix(1 0 0 1 540 540)">
+    <rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke" x="-540" y="-540" rx="0" ry="0" width="1080" height="1080"/>
+  </g>
+  <g transform="matrix(0.251892, 0, 0, -0.251892, 516.689819, 531.785034)" style="">
+    <path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(244,150,24); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke" transform=" translate(-4702, -5143.64)" d="M 5260 6305 C 5260 5901 5257 5570 5254 5570 C 5251 5570 5230 5585 5208 5604 C 5121 5679 4957 5738 4779 5760 C 4690 5771 4521 5761 4406 5740 C 4319 5723 4174 5674 4095 5634 C 3816 5492 3582 5200 3488 4875 C 3450 4743 3439 4662 3439 4505 C 3439 4351 3450 4266 3485 4146 C 3626 3660 3987 3336 4475 3260 C 4603 3240 4800 3244 4893 3269 C 4981 3292 5109 3350 5193 3403 C 5225 3424 5257 3440 5264 3440 C 5272 3440 5430 3397 5615 3344 C 5800 3291 5953 3250 5955 3252 C 5958 3254 5961 4107 5962 5148 L 5965 7040 L 5613 7040 L 5260 7040 L 5260 6305 z M 4823 5184 C 5029 5137 5183 5013 5280 4817 C 5379 4616 5384 4388 5295 4192 L 5270 4138 L 5335 4002 C 5371 3927 5399 3863 5398 3860 C 5396 3856 5329 3871 5248 3892 L 5101 3932 L 5068 3907 C 4983 3842 4799 3780 4690 3780 C 4610 3780 4496 3810 4402 3856 C 4212 3949 4074 4138 4034 4359 C 4005 4523 4025 4665 4100 4817 C 4240 5101 4533 5249 4823 5184 z" stroke-linecap="round"/>
+  </g>
+</svg>
