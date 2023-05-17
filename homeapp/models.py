@@ -98,6 +98,14 @@ class  recipe(models.Model):
             return ratingHistory.objects.get(user=user, sharedRecipe=self.sharedDetails).ratingGiven
         else:
             return -1
+    def estimatePrice(self):
+        price=0
+        for ingredient_name in self.recipeJSON['ingredients'].keys():
+            ingredient_price = self.recipeJSON['ingredients'][ingredient_name]['price']
+            if(ingredient_price is not None):
+                price += float(ingredient_price)
+        return price
+
     def __str__(self):
         rtn = "pk:" + str(self.pk) + ", Title:" + self.getTitle() + ", User:" + self.user.username
         if(self.shared()): rtn += ", sharedDetails: (" + self.sharedDetails.__str__() + ")"

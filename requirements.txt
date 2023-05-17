@@ -1,0 +1,4 @@
+svgwrite
+openai
+Django
+requests
