@@ -5,8 +5,9 @@
     <link rel="stylesheet" href="{% static 'homeapp/css/styles.css' %}">
 </head>
 
-<body>
-    <div id="login">
+<body style="text-align: center;">
+  <img width="200px" src="{% static 'homeapp/logofull.svg'%}" >
+    <div id="login" style="text-align: left;">
       <form method="post">
         <h2>Sign up</h2>
         {% csrf_token %}

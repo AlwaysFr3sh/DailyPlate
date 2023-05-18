@@ -141,7 +141,6 @@ h2 {
 /*----------------------------------------*/
 /*------------ Login styling -------------*/
 #login {
-  margin-top:10%;
   display: flex;
   justify-content: space-around;
   font-family: "Tahoma", "Arial";
