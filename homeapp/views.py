@@ -91,16 +91,20 @@ def generateRecipe(request):
     #   temp = get_nutritional_info(ingredient)
 
     #   result['ingredients']['kcals'] = (temp['calories'])
-    newRecipe=recipe(user=request.user, recipeJSON=result)
 
+
+    ingredients_string = ""
     for ingredient_name in result['ingredients'].keys():
-      result['ingredients'][ingredient_name]['nutrition'] = get_nutritional_info(ingredient_name)
+      ingredient = result['ingredients'][ingredient_name]
+      ingredients_string += str(ingredient['amount']) + " "
+      ingredients_string += str(ingredient['unit']) + " "
+      ingredients_string += ingredient_name +  ", "
 
 
-    #print("Nutritional Information:")
-      #     print("Calories:", result['calories'])
-      #     print("Protein:", result['totalNutrients']['PROCNT']['quantity'], result['totalNutrients']['PROCNT']['unit'])
-      #     print("Carbohydrates:", result['totalNutrients']['CHOCDF']['quantity'], result['totalNutrients']['CHOCDF']['unit']
+
+    nutritional_info = get_nutritional_info(ingredients_string)
+    result['nutrition'] = nutritional_info
+    newRecipe=recipe(user=request.user, recipeJSON=result)
     newRecipe.save()
     resp={
       'title': newRecipe.getTitle(),
@@ -186,7 +190,6 @@ def renderSettingsPage(request):
   context={}
   return render(request, "settings.html", context)
 """
-
 
 def test_recipe_view(request):
   context = {

@@ -3,7 +3,7 @@
 {% block content %}
 <div class="recipe">
   <h2>{{ recipe.getTitle }}, by {{ recipe.user.username }} ({% if ratedByUser %}Public{% else %}Private{% endif %})</h2>
-  <div class="ingredients">
+  <div id="ingredients">
     <h3>Ingredients</h3>
 
     <ul>
@@ -13,7 +13,7 @@
     </ul>
 
   </div>
-  <div class="instructions">
+  <div id="instructions">
     <h3>Instructions</h3>
 
     <ul>
@@ -21,9 +21,20 @@
         <li> {{ instruction }} </li> 
       {% endfor %}
     </ul>
-    <p>Estimated price: £{{ recipe.estimatePrice|floatformat:2 }}</p>
-
   </div>
+
+  <div id="nutrition">
+    <h3>Nutrition</h3>
+
+    <ul>
+      {% for key,nutrient  in recipe.recipeJSON.nutrition.totalNutrients.items %}
+        <li>{{ nutrient.label }} {{ nutrient.quantity|floatformat:2 }} {{ nutrient.unit }} </li> 
+      {% endfor %}
+    </ul>
+  </div>
+
+
+  <p>Estimated price: £{{ recipe.estimatePrice|floatformat:2 }}</p>
   
  
 

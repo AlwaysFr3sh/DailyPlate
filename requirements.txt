@@ -2,3 +2,6 @@ svgwrite
 openai
 Django
 requests
+Daphne
+attrs
+channels
