@@ -3,6 +3,11 @@ body {
   color: rgb(45, 46, 53);
   background-color:rgb(241, 234, 231);
 }
+
+footer {
+  text-align: center;
+  font-size: small;
+}
 /*------------ Navbar styling ------------*/
 
 #navbar {

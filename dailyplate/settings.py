@@ -143,7 +143,8 @@ LOGOUT_REDIRECT_URL = "/login/"
 
 
 CHANNEL_LAYERS = {
+    #!!! CHANGE TO REDIS FOR DEPLOYMENTS !!!#
     "default": {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
+    },
 }
