@@ -5,3 +5,4 @@ requests
 Daphne
 attrs
 channels
+redis
