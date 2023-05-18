@@ -39,3 +39,31 @@ def get_nutritional_info(food_item):
     #     print("Fat:", result['totalNutrients']['FAT']['quantity'], result['totalNutrients']['FAT']['unit'])
     # else:
     #     print("Failed to retrieve nutritional information.")
+
+
+
+
+
+def get_nutritional_info(ingredient_string):
+    print("FETCHING NUTRITIONAL INFO FOR \n" + ingredient_string)
+    base_url = 'https://api.edamam.com/api/nutrition-data'
+    params = {
+    'app_id': "28946ca6",
+    'app_key': "21f380c94135357b124aa67bf7d6db84",
+    'nutrition-type':"logging",
+    'ingr': ingredient_string
+    }
+
+    response = requests.get(base_url, params=params)
+    
+    if response.status_code == 200:
+        data = response.json()
+        
+        return data
+    else:
+        
+        print(data)
+            
+        return None
+
+    

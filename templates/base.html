@@ -16,6 +16,7 @@
     <li><a style="pointer-events: none">Hi {{ user.username }}!</a></li>
     <li style="float: right"><a href="{% url 'logout' %}">Log out</a></li>
     <li style="float: right"><a href="{% url 'settings' %}">Settings</a></li>
+    <li style="float: right"><a href="{% url 'chat_index' %}">Chat rooms</a></li>
   </ul>
   <main>
     {% block content %}

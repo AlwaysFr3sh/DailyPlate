@@ -20,8 +20,11 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', include("homeapp.urls")),
+    path('chat/', include("chat.urls")),
+
     ###sends to custom signup view
     path('', views.signup),
     ###sends to default login/logout views
     path('', include("django.contrib.auth.urls")),
+
 ]
