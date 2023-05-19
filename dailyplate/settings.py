@@ -127,7 +127,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR/"static",
+    #BASE_DIR/"static", # This breaks docker and we aren't using it so I'm commenting it out
     BASE_DIR/"homeapp/static"
 ]
 
