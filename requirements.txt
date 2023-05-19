@@ -4,5 +4,6 @@ Django
 requests
 Daphne
 attrs
+attrs --updates
 channels
 redis
